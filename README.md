@@ -8,7 +8,7 @@
 
 ## Installation
 - getestet under ubuntu 14.04
-- Installiere node.js(4.2.x) und git
+- Installiere node.js(4.x or 6.x) und git
 - öffne ein terminal, cmd.exe oder so was ähnliches und tippe folgendes ein:
 
 ``` sh
@@ -17,6 +17,7 @@ cd app
 rm -rf .git
 git init
 
+npm install -g gulp coffee-script
 npm install
 gulp
 ```
@@ -43,8 +44,10 @@ gulp
 
 
 
-## Build Task
-- gulp kompiliert automatisch nach server/public für client code
+## Build Task development
+- gulp kompiliert den client code automatisch nach ./client/dist und refreshed browser
+
+
 
 ## Testen
 
