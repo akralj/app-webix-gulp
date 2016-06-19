@@ -1,0 +1,31 @@
+.webix_view.appHeaderBackground {
+  background: #34495e;
+  color: #ddd;
+  padding-left: 13px;
+  padding-top: 5px;
+  font-size: 1.1em;
+}
+
+.webix_view.bookedMessage
+{
+  color: red;
+  font-size: 1.3em;
+}
+
+.webix_view.actionText
+{
+  background: #EDECF2;
+  color: #800000;
+  font-size: 1.3em;
+  padding-left: 10px;
+}
+
+.webix_el_group{
+  padding-left: 0.5em;
+}
+
+.webix_el_checkbox.multiline .webix_label_right{
+  line-height:24px;
+  white-space:normal;
+  padding: 2px 25px 2px 10px;
+}
