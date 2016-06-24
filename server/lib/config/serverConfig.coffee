@@ -4,7 +4,7 @@
 
 packageConfig = require("../../../package.json")
 appName = packageConfig.name
-appPort = 7777
+appPort = 7007
 
 module.exports =
   appName: appName
@@ -33,5 +33,5 @@ module.exports =
   testing:
     serverName: "devi"
     dbRoot:     "./test/db"
-    appPort:    7778
+    appPort:    7008
 

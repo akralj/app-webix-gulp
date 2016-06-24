@@ -1,15 +1,24 @@
 # Feathers/Webix Starter Kit -> app dev made easy
 
-## Was wird verwendet
-- [Feathers](http://feathersjs.com) für den Serverteil
-- [Webix](www.webix.com) Componenten fürs UI
-- [Prova](https://github.com/akralj/prova) zum clientseitigen Testen
-- [Browsersync](https://browsersync.io) to sync it everywhere
+## Parts used
+- [Feathers](http://feathersjs.com) for RESTfull server
+- [Webix](www.webix.com) UI components
+- [Prova](https://github.com/akralj/prova) test runner based on tape
+- [Browsersync](https://browsersync.io) for syncing app during dev
 
 ## Installation
-- getestet under ubuntu 14.04
-- Installiere node.js(4.x or 6.x) und git
-- öffne ein terminal, cmd.exe oder so was ähnliches und tippe folgendes ein:
+- tested under ubuntu 14.04 and node 6.x (works under node 4.x too)
+- install node.js(6.x) and git, eg. on ubuntu
+
+``` sh
+# add reps
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo add-apt-repository ppa:git-core/ppa --yes
+sudo apt-get update
+# install all packages
+sudo apt-get install --yes git nodejs htop xsel samba unzip nginx
+```
+- clone repo and install npm dependencies:
 
 ``` sh
 git clone git@github.com:akralj/app.git
@@ -21,9 +30,9 @@ npm install -g gulp coffee-script
 npm install
 gulp
 ```
-Öffne eine Browser und gehe zu [http://localhost:9999](http://localhost:9999)
+Point your browser to [http://localhost:9007](http://localhost:9007)
 
-[http://localhost:3001](http://localhost:3001) konfiguriert browsersync
+[http://localhost:3001](http://localhost:3001) browsersync admin
 
 ## First steps
 - change name, version, description & author in package.json -> this will be used in server/lib/config/serverConfig.coffee
@@ -35,26 +44,25 @@ gulp
 
 
 ## So wird entwickelt:
-- client/dist/index.html beinhaltet das html Grundgerüst mit Metadaten
-- client/src/views die einzelnen UI-Komponenten
-- client/lib beinhaltet fremde oder eigene Bibliotheken
-- server/ den server code
-- test/ die tests und dummy data
-- lib code der sowohl am client als auch am server verwendet wird
-
+- client/dist/index.html basic app skelteon with meta tags
+- client/src/views -> views
+- client/lib -> libs used in multiple places
+- server/ -> server code
+- test/ tests and fixtures
+- lib/ shared client & server code
 
 
 ## Build Task development
-- gulp kompiliert den client code automatisch nach ./client/dist und refreshed browser
+- gulp compiles client code to ./client/dist and refreshes browser
 
 
 
-## Testen
+## Testing
 
 ``` sh
 gulp test
 ```
-startet die tape tests und liefert das Endergebnis im Terminal
+starts tape tests
 
 
 
