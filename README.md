@@ -1,13 +1,13 @@
 # Feathers/Webix Starter Kit -> app dev made easy
 
 ## Parts used
-- [Feathers](http://feathersjs.com) for RESTfull server
-- [Webix](www.webix.com) UI components
-- [Prova](https://github.com/akralj/prova) test runner based on tape
-- [Browsersync](https://browsersync.io) for syncing app during dev
+- [Feathers](http://feathersjs.com) for RESTfull services
+- [Webix](www.webix.com) for UI components
+- [Prova](https://github.com/akralj/prova) for tape tests
+- [Browsersync](https://browsersync.io) for syncing app windows during dev
 
 ## Installation
-- tested under ubuntu 14.04 and node 6.x (works under node 4.x too)
+- tested in ubuntu 14.04 and node 6.x (works in node 4.x too)
 - install node.js(6.x) and git, eg. on ubuntu
 
 ``` sh
@@ -16,7 +16,7 @@ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo add-apt-repository ppa:git-core/ppa --yes
 sudo apt-get update
 # install all packages
-sudo apt-get install --yes git nodejs htop xsel samba unzip nginx
+sudo apt-get install --yes git nodejs
 ```
 - clone repo and install npm dependencies:
 
@@ -25,9 +25,10 @@ git clone git@github.com:akralj/app.git
 cd app
 rm -rf .git
 git init
-
+# global modules
 npm install -g gulp coffee-script
 npm install
+# start app in dev mode
 gulp
 ```
 Point your browser to [http://localhost:9007](http://localhost:9007)
@@ -43,7 +44,8 @@ Point your browser to [http://localhost:9007](http://localhost:9007)
 - git push
 
 
-## So wird entwickelt:
+## Development how-to:
+- changes of server or client code either restarts server or refreshes browser
 - client/dist/index.html basic app skelteon with meta tags
 - client/src/views -> views
 - client/lib -> libs used in multiple places
@@ -52,9 +54,8 @@ Point your browser to [http://localhost:9007](http://localhost:9007)
 - lib/ shared client & server code
 
 
-## Build Task development
+## Build task in development
 - gulp compiles client code to ./client/dist and refreshes browser
-
 
 
 ## Testing
@@ -63,6 +64,3 @@ Point your browser to [http://localhost:9007](http://localhost:9007)
 gulp test
 ```
 starts tape tests
-
-
-

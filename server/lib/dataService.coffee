@@ -18,7 +18,7 @@ db.remove {}, { multi: true }, (err, res) ->
   dummyData = require("../../test/data/films.json")
   dummyData.forEach (data) ->
     db.insert data, (err, res) ->
-      console.log "inserted #{data._id}"
+      #console.log "inserted #{data._id}"
 
 
 opts =
@@ -31,7 +31,7 @@ opts =
 module.exports = service(opts).extend({
   before:
     all: (hook, next) ->
-      console.log hook.data
+      #console.log hook.data
       if hook.data and hook.params?.auth_user
         hook.data.user = hook.params.auth_user
       # change id to _id for noSql db
