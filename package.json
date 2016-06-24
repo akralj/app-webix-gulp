@@ -36,7 +36,7 @@
     "gulp": "latest",
     "gulp-shell": "latest",
     "jade": "latest",
-    "prova": "azer/prova",
+    "prova": "akralj/prova#addCoffeeSupport",
     "run-sequence": "latest",
     "stylus": "latest",
     "supervisor": "latest",
