@@ -28,7 +28,7 @@ module.exports =
     serverName: "devi"
     dbRoot: "./server/db"
     liveReloadPort: appPort + 2000 # by my convention
-    clientCode: "./server/public"
+    clientCode: "./client/dist"
 
   testing:
     serverName: "devi"
