@@ -3,6 +3,9 @@ shell = require('gulp-shell')
 runSequence = require('run-sequence')
 bs = require("browser-sync")
 serverConfig = require("./server/lib/config/serverConfig")
+inline = require('gulp-inline')
+uglify = require('gulp-uglify')
+minifyCss = require('gulp-minify-css')
 
 
 # DEFAULT
@@ -42,11 +45,25 @@ gulp.task "test", shell.task(["coffee test/index.coffee"])
 
 gulp.task 'copyWebixPro', shell.task("rsync -avhP --delete --stats ../assets/webix ./client/dist/lib/webix/")
 
+# copy assets, like images, fonts to server/public dir
+gulp.task 'copyAssets', ->
+  gulp.src(['client/dist/lib/webix/fonts/**/*']).pipe(gulp.dest('server/public/fonts'))
+  gulp.src(['client/dist/assets/**/*']).pipe(gulp.dest('server/public/assets'))
 
-# needs sudo restart app-appName on server as sysadmin
-# gulp.task('copyRemote', shell.task("rsync -avhP --delete --stats server/ sanode@serverName:/apps/AppName/server/"))
-# bundles app into one html file and copies it with all assets, like images to public
-#gulp.task "createProd", (callback) -> runSequence 'copyRemote', callback
+# bundles app into one html file
+gulp.task 'packJsandCssToOneHtml', ->
+  gulp.src('client/dist/index.html')
+  .pipe(inline({
+    base: 'client/dist/',
+    js: uglify,
+    css: minifyCss
+  })).pipe gulp.dest('server/public/')
+
+
+gulp.task "createProductionApp", (callback) -> runSequence 'copyAssets', 'packJsandCssToOneHtml', callback
+
+
+
 
 
 # missing automation
