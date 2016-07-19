@@ -63,12 +63,21 @@ gulp.task 'packJsandCssToOneHtml', ->
 gulp.task "createProductionApp", (callback) -> runSequence 'copyAssets', 'packJsandCssToOneHtml', callback
 
 
+# needs sudo restart app-appName on server as sysadmin
+# Staging
+gulp.task('cpServerDir',shell.task("rsync -avhP --delete --stats server/ /apps/#{serverConfig.appName}/server/"))
+gulp.task('cpPackageJson',shell.task("rsync -avhP --delete --stats server/ /apps/#{serverConfig.appName}/server/"))
+gulp.task('installNpmModules', shell.task("cd /apps/#{serverConfig.appName} && npm install --production"))
 
+
+# Production
+gulp.task('copyToProduction', shell.task("rsync -avhP --delete --stats server/ sanode@serverName:/apps/#{serverConfig.appName}/server/"))
 
 
 # missing automation
-# 3. restart service
+# 1. install node modules
+# npm i --production
+# 2. restart service
 #sudo restart APP_NAME
-# 4. check if service is still running
-#curl https://APP_DOMAIN_NAME/api/isOnliners
-
+# 3. check if service is still running
+#curl https://APP_DOMAIN_NAME/api/isOnline
