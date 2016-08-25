@@ -47,5 +47,4 @@ normalizeDatetime = (datetime) ->
     moment(datetime).format().slice(0,19)
   else moment().format().slice(0,19)
 
-
 ###

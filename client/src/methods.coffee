@@ -9,8 +9,8 @@ updateConfigStore = (id, table) ->
   lastUpdate =
     clientId: app.store.config.connection.id
     updatedAt: new Date()
-    user:   app.config.auth.user
-    groups: app.config.auth.groups
+    #user:   app.config.auth.user
+    #groups: app.config.auth.groups
 
   app.store.config.update(id, {data: data, lastUpdate: lastUpdate} ).then((res) -> console.log res).catch((err) -> console.log err, "error")
 

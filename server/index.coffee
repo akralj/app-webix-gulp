@@ -25,7 +25,6 @@ configService.init (err, configCtrl) ->
   app = feathers()
   # add global serverConfig which can be used in services
   app.serverConfig = configCtrl.config.server
-  console.log configCtrl.config
 
   app.use(compression())
   .options('*', cors()).use(cors()) # needed for tests
@@ -34,11 +33,11 @@ configService.init (err, configCtrl) ->
   .use(bodyParser.json())
   .use(bodyParser.urlencoded(extended: true))
   .configure(hooks())
+  .configure(socketio())
   .configure(rest())
   # NEXT make on configure for all services, like feathers-chat
   .use("config", configService.service)
   .configure(dataService)
-
   #.use(addHeaders) # supplies feathers with user, groups and ip from WAF
 
 

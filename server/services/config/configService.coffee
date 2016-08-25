@@ -2,12 +2,11 @@
 # NEXt: rewrite isInReadWriteGroup as hook
 #
 
-Joi           = require('joi')
 errors        = require('feathers-errors').types
 _             = require('underscore')
 NeDb          = require('nedb')
 feathersService = require('feathers-nedb')
-hooks       = require('../../hooks')
+hooks         = require('../../hooks')
 configCtrl    = require("./configCtrl")
 serverConfig  = require("./serverConfig")
 
@@ -20,7 +19,7 @@ normalizeId = (obj) ->
 
 if process.env.APP_ENV is "development" or process.env.APP_ENV is "testing"
   extraConfig = serverConfig[process.env.APP_ENV]
-  serverConfig = _.extend(serverConfig,extraConfig)
+  serverConfig = _.extend(serverConfig, extraConfig)
   delete serverConfig.development; delete serverConfig.testing
 
 
@@ -47,27 +46,9 @@ init = (cb) ->
       cb err, configCtrl
 
 
-validate = (hook, next) ->
-  next()
-  ###
-  schema = require("../schema/config")
-  Joi.validate hook.data, schema, (err, value) ->
-    #console.log "validating", err, value, hook.id
-    # if err then hook.data._error = {name: err.name, details: err.details}
-    next()
-  ###
-
-
 service = feathersService({Model: db}).extend({
     before:
-      all: (hook, next) ->
-        if hook.data and hook.params?.auth_user
-          hook.data.user = hook.params.auth_user
-        # change id to _id for noSql db
-        if hook?.data?.id
-          hook.data._id = hook.data.id
-          delete hook.data.id
-        next()
+      all: [hooks.changeId2_id]
       #update: [hooks.isInReadWriteGroup, validate]
 
     after:
