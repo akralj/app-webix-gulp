@@ -15,8 +15,7 @@ bodyParser    = require('body-parser')
 cors          = require('cors')
 path          = require('path')
 addHeaders    = require('./middleware/addHeadersFromWaf')
-dataService   = require('./services/data')
-configService = require('./services/config')
+
 
 # Create a feathers instance.
 app = feathers()
@@ -34,8 +33,8 @@ app.use(compression())
 .configure(socketio())
 .configure(rest())
 #.use(addHeaders) # supplies feathers with user, groups and ip from WAF
-.configure(configService)
-.configure(dataService)
+.configure(require('./services/config'))
+.configure(require('./services/data'))
 
 
 # A basic error handler, just like Express
