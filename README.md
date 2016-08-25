@@ -38,8 +38,8 @@ Server is restarted, whenever server code changes.
 Browser refreses, whenever client code changes.
 
 ## First steps (optional)
-- change name, version, description & author in package.json -> this will be used in server/lib/config/serverConfig.coffee
-- change serverName, ports,... in server/lib/config/serverConfig.coffee to match your enviroment
+- change name, version, description & author in package.json -> this will be used in server/services/config/serverConfig.coffee
+- change serverName, ports,... in server/services/config/serverConfig.coffee to match your enviroment
 - start with a fresh git repo
 ``` sh
 rm -rf .git

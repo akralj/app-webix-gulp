@@ -18,14 +18,14 @@ configService.init (err, configCtrl) ->
   bodyParser    = require('body-parser')
   cors          = require('cors')
   path          = require('path')
-  addHeaders    = require('./lib/addHeadersFromWaf')
-  dataService   = require('./services/dataService')
+  addHeaders    = require('./middleware/addHeadersFromWaf')
+  dataService   = require('./services/data')
 
   # Create a feathers instance.
   app = feathers()
   # add global serverConfig which can be used in services
   app.serverConfig = configCtrl.config.server
-
+  console.log configCtrl.config
 
   app.use(compression())
   .options('*', cors()).use(cors()) # needed for tests
@@ -35,6 +35,7 @@ configService.init (err, configCtrl) ->
   .use(bodyParser.urlencoded(extended: true))
   .configure(hooks())
   .configure(rest())
+  # NEXT make on configure for all services, like feathers-chat
   .use("config", configService.service)
   .configure(dataService)
 
@@ -54,4 +55,4 @@ configService.init (err, configCtrl) ->
   server = app.listen(port)
   server.on 'listening', ->
     console.timeEnd("server startup")
-    console.log("Feathers sequelize service running on 127.0.0.1:#{port}")
+    console.log("Feathers service running on 127.0.0.1:#{port}")

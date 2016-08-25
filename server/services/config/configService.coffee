@@ -1,5 +1,5 @@
 # validates data and takes care of nedb database
-#
+# NEXt: rewrite isInReadWriteGroup as hook
 #
 
 Joi           = require('joi')
@@ -7,9 +7,15 @@ errors        = require('feathers-errors').types
 _             = require('underscore')
 NeDb          = require('nedb')
 feathersService = require('feathers-nedb')
-methods       = require('../../lib/methods')
+hooks       = require('../../hooks')
 configCtrl    = require("./configCtrl")
 serverConfig  = require("./serverConfig")
+
+normalizeId = (obj) ->
+  if obj._id
+    obj.id = obj._id
+    delete obj._id
+  obj
 
 
 if process.env.APP_ENV is "development" or process.env.APP_ENV is "testing"
@@ -62,18 +68,18 @@ service = feathersService({Model: db}).extend({
           hook.data._id = hook.data.id
           delete hook.data.id
         next()
-      update: [methods.isInReadWriteGroup, validate]
+      #update: [hooks.isInReadWriteGroup, validate]
 
     after:
       all: (hook, next) ->
         if _.isArray hook?.result
           # change _id -> id
-          hook.result = hook.result.map (item) -> methods.normalizeId(item)
+          hook.result = hook.result.map (item) -> normalizeId(item)
           # add auth info when comlete config is requested
           if hook?.params?.auth_user
             hook.result.push(id: "auth", data: {user: hook.params.auth_user, groups: hook.params.auth_groups, authConfig: serverConfig?.authConfig})
         else if hook?.result?._id
-          hook.result = methods.normalizeId(hook.result)
+          hook.result = normalizeId(hook.result)
         next()
       # XXX needs proper id in event not _id
       update: (hook, next) ->
