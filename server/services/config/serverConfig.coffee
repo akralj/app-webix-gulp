@@ -2,11 +2,12 @@
 #
 #
 
+_ = require("underscore")
 packageConfig = require("../../../package.json")
 appName = packageConfig.name
 appPort = 7007
 
-module.exports =
+config =
   appName: appName
   appRoot: "./server"
   appPort: appPort
@@ -24,14 +25,21 @@ module.exports =
       port: 25
     templatesPath: "/apps/#{appName}/share/templatesDir"
 
-  development:
-    serverName: "devi"
-    dbRoot: "./server/db"
-    liveReloadPort: appPort + 2000 # by my convention
-    clientCode: "./client/dist"
 
-  testing:
-    serverName: "devi"
-    dbRoot:     "./test/db"
-    appPort:    7008
+module.exports = (env) ->
+  if env is "development"
+    development =
+      serverName: "userv"
+      dbRoot: "./server/db"
+      liveReloadPort: appPort + 2000 # by my convention
+      clientCode: "./client/dist"
+    _.extend(config, development)
 
+  else if env is "testing"
+    testing=
+      serverName: "userv"
+      dbRoot:     "./test/db"
+      appPort:    7008
+    _.extend(config, testing)
+
+  return config

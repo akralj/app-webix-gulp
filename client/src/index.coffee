@@ -25,7 +25,6 @@ configCtrl = require("./config")
 
 # get app resources from server before party begins
 configCtrl((serverConfig) ->
-  #console.log "serverConfig:", serverConfig
 
   webix.ui
     rows: [

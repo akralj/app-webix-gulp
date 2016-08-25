@@ -5,53 +5,50 @@
 # time startup
 console.time("server startup")
 
-# 1. get config from db and init config controller
-configService = require('./services/config/configService')
-configService.init (err, configCtrl) ->
 
-  # 2. start the party
-  feathers      = require('feathers')
-  rest          = require('feathers-rest')
-  socketio      = require('feathers-socketio')
-  hooks         = require('feathers-hooks')
-  compression   = require('compression')
-  bodyParser    = require('body-parser')
-  cors          = require('cors')
-  path          = require('path')
-  addHeaders    = require('./middleware/addHeadersFromWaf')
-  dataService   = require('./services/data')
+feathers      = require('feathers')
+rest          = require('feathers-rest')
+socketio      = require('feathers-socketio')
+hooks         = require('feathers-hooks')
+compression   = require('compression')
+bodyParser    = require('body-parser')
+cors          = require('cors')
+path          = require('path')
+addHeaders    = require('./middleware/addHeadersFromWaf')
+dataService   = require('./services/data')
+configService = require('./services/config')
 
-  # Create a feathers instance.
-  app = feathers()
-  # add global serverConfig which can be used in services
-  app.serverConfig = configCtrl.config.server
+# Create a feathers instance.
+app = feathers()
+# add global serverConfig which can be used in services
+app.serverConfig = require("./services/config/serverConfig")(process.env.APP_ENV)
 
-  app.use(compression())
-  .options('*', cors()).use(cors()) # needed for tests
-  #.use(favicon( path.join(app.serverConfig.clientCode, 'favicon.ico') )) # not sure if this is needed specifically
-  .use("/", feathers.static(app.serverConfig.clientCode))
-  .use(bodyParser.json())
-  .use(bodyParser.urlencoded(extended: true))
-  .configure(hooks())
-  .configure(socketio())
-  .configure(rest())
-  # NEXT make on configure for all services, like feathers-chat
-  .use("config", configService.service)
-  .configure(dataService)
-  #.use(addHeaders) # supplies feathers with user, groups and ip from WAF
+app.use(compression())
+.options('*', cors()).use(cors()) # needed for tests
+# not sure if this is needed specifically
+#.use(favicon( path.join(app.serverConfig.clientCode, 'favicon.ico') ))
+.use("/", feathers.static(app.serverConfig.clientCode))
+.use(bodyParser.json())
+.use(bodyParser.urlencoded(extended: true))
+.configure(hooks())
+.configure(socketio())
+.configure(rest())
+#.use(addHeaders) # supplies feathers with user, groups and ip from WAF
+.configure(configService)
+.configure(dataService)
 
 
-  # A basic error handler, just like Express
-  .use((err, req, res, next) ->
-    res.statusCode = err.code if err?.code
-    if err?.errors
-      res.json(message: err.message, errors: err.errors)
-    else res.send err.message
-  )
+# A basic error handler, just like Express
+.use((err, req, res, next) ->
+  res.statusCode = err.code if err?.code
+  if err?.errors
+    res.json(message: err.message, errors: err.errors)
+  else res.send err.message
+)
 
-  # devPort is used only in dev, otherwise upstart env var
-  port = process.env.PORT or app.serverConfig.appPort
-  server = app.listen(port)
-  server.on 'listening', ->
-    console.timeEnd("server startup")
-    console.log("Feathers service running on 127.0.0.1:#{port}")
+# devPort is used only in dev, otherwise upstart env var
+port = process.env.PORT or app.serverConfig.appPort
+server = app.listen(port)
+server.on 'listening', ->
+  console.timeEnd("server startup")
+  console.log("Feathers service running on 127.0.0.1:#{port}")

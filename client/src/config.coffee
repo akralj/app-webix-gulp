@@ -23,8 +23,8 @@ app.store.config.on 'updated', (obj) ->
 # get config over ajax to set proper header for authentication
 module.exports = (cb) ->
   fetch("/config").then((res) -> res.json()).then((serverConfig) ->
-    # console.log serverConfig
-    serverConfig.forEach (item) ->
+    console.log serverConfig
+    serverConfig.data.forEach (item) ->
       _config[item.id] = item.data
       # these object cant be overwritten, client side, should be save enough
       Object.defineProperty(app.config, "#{item.id}", { get: -> return _config[item.id]})

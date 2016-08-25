@@ -2,7 +2,7 @@ gulp = require('gulp')
 shell = require('gulp-shell')
 runSequence = require('run-sequence')
 bs = require("browser-sync")
-serverConfig = require("./server/services/config/serverConfig")
+serverConfig = require("./server/services/config/serverConfig")("development")
 inline = require('gulp-inline')
 uglify = require('gulp-uglify')
 minifyCss = require('gulp-minify-css')
@@ -18,7 +18,7 @@ gulp.task 'default', ['watch', 'reload', 'restServer']
 gulp.task 'browser-sync', ->
   bs.init null,
     proxy: "http://localhost:#{serverConfig.appPort}"
-    port:   serverConfig.development.liveReloadPort # port which one can connect to proxied app
+    port:   serverConfig.liveReloadPort # port which one can connect to proxied app
     ws:     true   # makes websockets work
 gulp.task 'reload', [ 'browser-sync' ], ->
   gulp.watch './client/dist/**/*.html', bs.reload

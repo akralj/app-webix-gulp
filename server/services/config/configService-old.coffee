@@ -1,5 +1,5 @@
-# validates data and takes care of nedb database
-# NEXt: rewrite isInReadWriteGroup as hook
+# this was to complicated, so we will rewrite it in a simpler fashion
+# 
 #
 
 errors        = require('feathers-errors').types
