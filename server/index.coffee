@@ -6,7 +6,7 @@
 console.time("server startup")
 
 # 1. get config from db and init config controller
-configService = require('./lib/config/configService')
+configService = require('./services/config/configService')
 configService.init (err, configCtrl) ->
   serverConfig = configCtrl.config.server
   # 2. start the party
@@ -20,7 +20,7 @@ configService.init (err, configCtrl) ->
   cors          = require('cors')
   path          = require('path')
   addHeaders    = require('./lib/addHeadersFromWaf')
-  dataService   = require('./lib/dataService')
+  dataService   = require('./services/dataService')
 
 
   # Create a feathers instance.

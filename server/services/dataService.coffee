@@ -7,7 +7,7 @@ errors        = require('feathers-errors').types
 _             = require('underscore')
 NeDb          = require('nedb')
 service       = require('feathers-nedb')
-methods       = require('../../lib/methods')
+methods       = require('../lib/methods')
 serverConfig  = require("./config/configCtrl").config.server
 
 db = new NeDb({filename: "#{serverConfig.dbRoot}/data.db", autoload: true})

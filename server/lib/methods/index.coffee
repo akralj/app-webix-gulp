@@ -6,7 +6,7 @@ _           = require('underscore')
 moment      = require("moment")
 moment.locale("de")
 errors = require('feathers-errors').types
-config = require("../config/configCtrl").config
+config = require("../../services/config/configCtrl").config
 
 
 normalizeDatetime = (datetime) ->

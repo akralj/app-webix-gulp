@@ -7,7 +7,7 @@ errors        = require('feathers-errors').types
 _             = require('underscore')
 NeDb          = require('nedb')
 feathersService = require('feathers-nedb')
-methods       = require('../methods')
+methods       = require('../../lib/methods')
 configCtrl    = require("./configCtrl")
 serverConfig  = require("./serverConfig")
 
