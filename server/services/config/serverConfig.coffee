@@ -30,7 +30,7 @@ module.exports = (env) ->
   if env is "development"
     development =
       serverName: "userv"
-      dbRoot: "./server/db"
+      dbRoot: "./db"
       liveReloadPort: appPort + 2000 # by my convention
       clientCode: "./client/dist"
     _.extend(config, development)

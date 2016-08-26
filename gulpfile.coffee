@@ -2,10 +2,10 @@ gulp = require('gulp')
 shell = require('gulp-shell')
 runSequence = require('run-sequence')
 bs = require("browser-sync")
-serverConfig = require("./server/services/config/serverConfig")("development")
 inline = require('gulp-inline')
 uglify = require('gulp-uglify')
 minifyCss = require('gulp-minify-css')
+serverConfig = require("./server/services/config/serverConfig")("production")
 
 
 # DEFAULT
@@ -16,6 +16,7 @@ gulp.task 'default', ['watch', 'reload', 'restServer']
 # Reload
 #----------------------------------------------------------------------------------------------------------------------
 gulp.task 'browser-sync', ->
+  serverConfig = require("./server/services/config/serverConfig")("development")
   bs.init null,
     proxy: "http://localhost:#{serverConfig.appPort}"
     port:   serverConfig.liveReloadPort # port which one can connect to proxied app
@@ -65,9 +66,11 @@ gulp.task "createProductionApp", (callback) -> runSequence 'copyAssets', 'packJs
 
 # needs sudo restart app-appName on server as sysadmin
 # Staging
-gulp.task('cpServerDir',shell.task("rsync -avhP --delete --stats server/ /apps/#{serverConfig.appName}/server/"))
-gulp.task('cpPackageJson',shell.task("rsync -avhP --delete --stats server/ /apps/#{serverConfig.appName}/server/"))
-gulp.task('installNpmModules', shell.task("cd /apps/#{serverConfig.appName} && npm install --production"))
+gulp.task 'createStaging', ['copyToStaging', 'copyPackageJson', 'installModules']
+
+gulp.task('copyToStaging', shell.task("rsync -avhP --delete --stats server/ sanode@localhost:/apps/#{serverConfig.appName}/server/"))
+gulp.task('copyPackageJson', shell.task("rsync -avhP --delete --stats node_modules sanode@localhost:/apps/#{serverConfig.appName}/"))
+gulp.task('installModules', shell.task("sudo -u sanode mkdir /apps/#{serverConfig.appName}/node_modules & cd /apps/#{serverConfig.appName} && npm install --production --verbose"))
 
 
 # Production
