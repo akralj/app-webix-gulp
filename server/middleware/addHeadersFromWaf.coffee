@@ -18,4 +18,3 @@ module.exports = (req, res, next) ->
     req.feathers.clientIp = req.headers['x-forwarded-for'] or req.connection.remoteAddress
 
   next()
-

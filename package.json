@@ -27,6 +27,7 @@
     "uberproto": "latest",
     "underscore": "latest",
     "underscore.string": "latest",
+    "winston": "latest",
     "xhr": "akralj/xhr"
   },
   "devDependencies": {

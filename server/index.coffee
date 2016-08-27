@@ -1,5 +1,5 @@
 # main server file
-# modled after: https://github.com/feathersjs/feathers-chat
+# modeled after: https://github.com/feathersjs/feathers-chat
 #
 
 # time startup
@@ -14,7 +14,7 @@ compression   = require('compression')
 bodyParser    = require('body-parser')
 cors          = require('cors')
 path          = require('path')
-addHeaders    = require('./middleware/addHeadersFromWaf')
+middleware    = require('./middleware')
 
 
 # Create a feathers instance.
@@ -32,18 +32,10 @@ app.use(compression())
 .configure(hooks())
 .configure(socketio())
 .configure(rest())
-#.use(addHeaders) # supplies feathers with user, groups and ip from WAF
 .configure(require('./services/config'))
 .configure(require('./services/data'))
+.configure(middleware)
 
-
-# A basic error handler, just like Express
-.use((err, req, res, next) ->
-  res.statusCode = err.code if err?.code
-  if err?.errors
-    res.json(message: err.message, errors: err.errors)
-  else res.send err.message
-)
 
 # devPort is used only in dev, otherwise upstart env var
 port = process.env.PORT or app.serverConfig.appPort
