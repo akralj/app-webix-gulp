@@ -9,12 +9,12 @@ serverConfig = require("./server/services/config/serverConfig")("production")
 
 
 # DEFAULT
-#----------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------------------------
 gulp.task 'default', ['watch', 'reload', 'restServer']
 
 
 # Reload
-#----------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------------------------
 gulp.task 'browser-sync', ->
   serverConfig = require("./server/services/config/serverConfig")("development")
   bs.init null,
@@ -30,7 +30,8 @@ gulp.task 'reload', [ 'browser-sync' ], ->
 # Client
 #------------------------------------------------------------------------------------------------------------------
 gulp.task('watch'
-  , shell.task("watchify -t coffeeify client/src/index.coffee -o client/dist/bundle.js --verbose --extension='.coffee'"))
+  , shell.task("watchify -t coffeeify client/src/index.coffee -o client/dist/bundle.js --verbose --extension='.coffee'")
+)
 
 
 # Server
