@@ -25,7 +25,7 @@ module.exports = ->
 
   app.use "data", service(opts).extend({
     before:
-      all: [hooks.changeId2_id, hooks.myHook]
+      all: [hooks.changeId2_id, hooks.normalizeParams]
 
     after:
       all: [hooks.change_id2id]

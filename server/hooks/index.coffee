@@ -33,8 +33,19 @@ module.exports =
       hook.result = normalizeId(hook.result)
     next()
 
-  myHook: (hook, next) ->
-    console.log 'My custom global hook ran. Feathers is awesome!'
+
+  normalizeParams: (hook, next) ->
+    query = hook.params.query
+    console.log hook.params
+    if hook.params.provider is "rest"
+      numberFields = ["duration"]
+      Object.keys(query).forEach (key) ->
+        # parse booleans
+        if query[key] is 'true'  then query[key] = true
+        if query[key] is 'false' then query[key] = false
+        # parse numbers
+        if key in numberFields then query[key] = parseInt(query[key])
+
     next()
 
 
