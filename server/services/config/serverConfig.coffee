@@ -14,8 +14,8 @@ config =
   appVersion: packageConfig.version
   serverName: "prodServerName"
   clientCode: "./server/public"
-  dbRoot: "/apps/#{appName}"
-  sharePath: "/apps/#{appName}/share"
+  dbRoot: "/apps/#{appName}/db"
+  #sharePath: "/apps/#{appName}/share"
   authConfig:
     readOnlyGroups: ["someGroup_r", "anotherGroup_r"]
     readWriteGroups: ["someOtherGroup_rw"]
