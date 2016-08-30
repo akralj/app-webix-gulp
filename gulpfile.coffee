@@ -61,21 +61,13 @@ gulp.task 'packJsandCssToOneHtml', ->
     css: minifyCss
   })).pipe gulp.dest('server/public/')
 
-
+# Production: test on prod server with: APP_ENV=production coffee server/index.coffee
+#----------------------------------------------------------------------------------------------------------------
+gulp.task 'createProd', (callback) ->
+  runSequence 'createProductionApp', 'copyToProduction', 'copyModulesToProduction', callback
 gulp.task "createProductionApp", (callback) -> runSequence 'copyAssets', 'packJsandCssToOneHtml', callback
-
-
-# needs sudo restart app-appName on server as sysadmin
-# Staging
-gulp.task 'createStaging', ['copyToStaging', 'copyPackageJson', 'installModules']
-
-gulp.task('copyToStaging', shell.task("rsync -avhP --delete --stats server/ sanode@localhost:/apps/#{serverConfig.appName}/server/"))
-gulp.task('copyPackageJson', shell.task("rsync -avhP --delete --stats node_modules sanode@localhost:/apps/#{serverConfig.appName}/"))
-gulp.task('installModules', shell.task("sudo -u sanode mkdir /apps/#{serverConfig.appName}/node_modules & cd /apps/#{serverConfig.appName} && npm install --production --verbose"))
-
-
-# Production
-gulp.task('copyToProduction', shell.task("rsync -avhP --delete --stats server/ sanode@serverName:/apps/#{serverConfig.appName}/server/"))
+gulp.task('copyToProduction', shell.task("rsync -avhP --delete --stats server/ sanode@#{serverConfig.serverName}:/apps/#{serverConfig.appName}/server/"))
+gulp.task('copyModulesToProduction', shell.task("rsync -avhP --delete --stats package.json sanode@#{serverConfig.serverName}:/apps/#{serverConfig.appName}/"))
 
 
 # missing automation
