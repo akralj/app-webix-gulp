@@ -42,7 +42,11 @@ gulp.task('restServer'
 
 # Tests
 #------------------------------------------------------------------------------------------------------------------
-gulp.task "test", shell.task(["coffee test/index.coffee"])
+# headless testing with chromium, ubuntu server needs: sudo apt-get install xvfb chromium-browser
+gulp.task "test", shell.task(["coffee test -b -l chromium -e"])
+# run test in node env, should always work (usefull when using ajax requests and server does not allow cors)
+gulp.task "test-in-node", shell.task(["coffee test"])
+
 
 
 gulp.task 'copyWebixPro', shell.task("rsync -avhP --delete --stats ../assets/webix ./client/dist/lib/webix/")
