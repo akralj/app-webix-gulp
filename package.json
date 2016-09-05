@@ -16,7 +16,7 @@
     "feathers-nedb": "latest",
     "feathers-rest": "latest",
     "feathers-socketio": "latest",
-    "isomorphic-fetch": "^2.2.1",
+    "isomorphic-fetch": "latest",
     "joi": "latest",
     "jstransformer": "latest",
     "jstransformer-stylus": "latest",
