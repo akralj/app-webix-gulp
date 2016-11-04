@@ -46,6 +46,6 @@
     "run-sequence": "latest",
     "stylus": "latest",
     "supervisor": "latest",
-    "watchify": "latest"
+    "watchify": "^3.7.0"
   }
 }
