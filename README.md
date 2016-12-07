@@ -22,7 +22,7 @@ sudo apt-get install --yes git nodejs
 - clone repo and install npm dependencies:
 
 ``` sh
-git clone git@github.com:akralj/app.git
+git clone https://github.com/akralj/app
 cd app
 # global modules
 npm install -g gulp coffee-script
