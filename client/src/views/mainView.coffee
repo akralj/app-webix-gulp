@@ -8,9 +8,9 @@ module.exports =
   keepViews: true
   animate: false
   cells: [
-    require('./view1')
-    require('./view2')
-    require('./settings')
+    require('./view1')()
+    require('./view2')()
+    require('./settings')()
 
     {id: "404", template: "die seite ist noch leer, aber bald..."}
   ]

@@ -2,7 +2,8 @@
 #
 #
 
-module.exports =
+# use params to customize view component
+module.exports = (params) ->
   view:"datatable"
   id: "view1"
   width: "100%"

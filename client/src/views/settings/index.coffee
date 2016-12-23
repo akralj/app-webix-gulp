@@ -30,7 +30,8 @@ settingsTreeView =
   }
 
 
-module.exports =
+# use params to customize view component
+module.exports = (params) ->
   view: "form"
   type: "wide"
   id: "settings"
