@@ -2,7 +2,7 @@
 #
 #
 
-_ = require("underscore")
+_ = require("lodash")
 # keep track of configuration
 _config = {} # private member
 config = {}  # exported config

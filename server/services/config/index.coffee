@@ -2,7 +2,7 @@
 #
 #
 
-_             = require('underscore')
+_             = require("lodash")
 NeDb          = require('nedb')
 service       = require('feathers-nedb')
 hooks         = require('../../hooks')

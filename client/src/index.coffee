@@ -4,7 +4,7 @@
 
 
 # global requires
-window._ = require('underscore')
+window._ = require("lodash")
 window.app = require('ampersand-app')
 require('./lib/webix/i18n/de')
 webix.i18n.setLocale("de-DE")

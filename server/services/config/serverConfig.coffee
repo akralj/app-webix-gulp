@@ -2,7 +2,7 @@
 #
 #
 
-_ = require("underscore")
+_ = require("lodash")
 packageConfig = require("../../../package.json")
 appName = packageConfig.name
 appPort = 7007

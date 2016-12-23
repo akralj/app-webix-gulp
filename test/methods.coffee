@@ -3,7 +3,7 @@
 #
 
 test = require('prova')
-_ = require('underscore')
+_ = require("lodash")
 
 
 test "some Test", (t) ->
