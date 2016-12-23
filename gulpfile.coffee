@@ -1,10 +1,12 @@
-gulp = require('gulp')
-shell = require('gulp-shell')
+gulp        = require('gulp')
+shell       = require('gulp-shell')
 runSequence = require('run-sequence')
-bs = require("browser-sync")
-inline = require('gulp-inline')
-uglify = require('gulp-uglify')
-minifyCss = require('gulp-minify-css')
+bs          = require("browser-sync")
+inline      = require('gulp-inline')
+uglify      = require('gulp-uglify')
+
+cleanCSS    = require('gulp-clean-css')
+
 serverConfig = require("./server/services/config/serverConfig")("production")
 
 
@@ -62,7 +64,7 @@ gulp.task 'packJsandCssToOneHtml', ->
   .pipe(inline({
     base: 'client/dist/',
     js: uglify,
-    css: minifyCss
+    css: cleanCSS #minifyCss
   })).pipe gulp.dest('server/public/')
 
 # Production: test on prod server with: APP_ENV=production coffee server/index.coffee

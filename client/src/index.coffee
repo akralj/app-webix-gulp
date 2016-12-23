@@ -5,7 +5,9 @@
 
 # global requires
 window._ = require("lodash")
+# use a root app to have an global event emitter handy
 window.app = require('ampersand-app')
+
 require('./lib/webix/i18n/de')
 webix.i18n.setLocale("de-DE")
 webix.Date.startOnMonday = true

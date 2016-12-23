@@ -1,9 +1,13 @@
 {
   "name": "appName",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "author": "akralj",
   "license": "MIT",
   "description": "Feathers/Webix Starter Kit",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akralj/app.git"
+  },
   "dependencies": {
     "ampersand-app": "latest",
     "body-parser": "latest",
@@ -18,34 +22,28 @@
     "feathers-socketio": "latest",
     "isomorphic-fetch": "latest",
     "joi": "latest",
-    "jstransformer": "latest",
-    "jstransformer-stylus": "latest",
     "lodash": "^4.17.2",
     "lodash-mixins": "github:akralj/lodash-mixins",
     "moment": "latest",
     "nedb": "latest",
     "page": "latest",
-    "queue-async": "latest",
     "socket.io-client": "latest",
-    "uberproto": "latest",
-    "winston": "^2.2.0",
-    "xhr": "akralj/xhr"
+    "winston": "latest"
   },
   "devDependencies": {
     "browser-sync": "latest",
     "coffee-script": "latest",
     "coffeeify": "latest",
     "gulp": "latest",
-    "gulp-clean-css": "^2.0.10",
-    "gulp-inline": "^0.1.1",
-    "gulp-minify-css": "^1.2.4",
+    "gulp-clean-css": "latest",
+    "gulp-inline": "latest",
     "gulp-shell": "latest",
-    "gulp-uglify": "^1.5.4",
-    "jade": "latest",
+    "gulp-uglify": "latest",
     "prova": "akralj/prova#addCoffeeSupport",
+    "pug": "latest",
     "run-sequence": "latest",
     "stylus": "latest",
     "supervisor": "latest",
-    "watchify": "^3.7.0"
+    "watchify": "latest"
   }
 }
