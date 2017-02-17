@@ -4,7 +4,6 @@ runSequence = require('run-sequence')
 bs          = require("browser-sync")
 inline      = require('gulp-inline')
 uglify      = require('gulp-uglify')
-
 cleanCSS    = require('gulp-clean-css')
 
 serverConfig = require("./server/services/config/serverConfig")("production")
@@ -46,9 +45,6 @@ gulp.task('restServer'
 #------------------------------------------------------------------------------------------------------------------
 # headless testing with chromium, ubuntu server needs: sudo apt-get install xvfb chromium-browser
 gulp.task "test", shell.task(["coffee test -b -l chromium -e"])
-# run test in node env, should always work (usefull when using ajax requests and server does not allow cors)
-gulp.task "test-in-node", shell.task(["coffee test"])
-
 
 
 gulp.task 'copyWebixPro', shell.task("rsync -avhP --delete --stats ../assets/webix ./client/dist/lib/webix/")
@@ -64,7 +60,7 @@ gulp.task 'packJsandCssToOneHtml', ->
   .pipe(inline({
     base: 'client/dist/',
     js: uglify,
-    css: cleanCSS #minifyCss
+    css:cleanCSS #minifyCss
   })).pipe gulp.dest('server/public/')
 
 # Production: test on prod server with: APP_ENV=production coffee server/index.coffee
