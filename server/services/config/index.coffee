@@ -1,4 +1,4 @@
-# use code from configService-old and configCtrl-old to do autorisation here
+# supplies client with config values
 #
 #
 
