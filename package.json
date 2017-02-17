@@ -8,6 +8,10 @@
     "type": "git",
     "url": "git+https://github.com/akralj/app.git"
   },
+  "scripts": {
+    "test-unit": "coffee test/index.coffee | tap-spec",
+    "test": "watch 'npm run test-unit' test server"
+  },
   "dependencies": {
     "ampersand-app": "latest",
     "body-parser": "latest",
@@ -39,11 +43,13 @@
     "gulp-inline": "latest",
     "gulp-shell": "latest",
     "gulp-uglify": "latest",
-    "prova": "akralj/prova#addCoffeeSupport",
     "pug": "latest",
     "run-sequence": "latest",
     "stylus": "latest",
     "supervisor": "latest",
+    "tap": "^10.1.1",
+    "tap-spec": "^4.1.1",
+    "watch": "^1.0.1",
     "watchify": "latest"
   }
 }
