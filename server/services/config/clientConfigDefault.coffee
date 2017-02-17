@@ -1,14 +1,17 @@
 # some vars for development testing
-developerEmail = "your email"
+#
+#
 
-module.exports = [
+serverConfig = require("./serverConfig")
+
+module.exports = (env) -> [
   {
     id: "general"
     data: [
       {
-        id: "emailFrom",
-        displayName: "Email Von"
-        value: developerEmail
+        id: "imageUrl",
+        displayName: "Base Url der Bilder"
+        value: serverConfig(env).service.contacts.imageUrl
       },
       {
         id: "reservationMaxDate",

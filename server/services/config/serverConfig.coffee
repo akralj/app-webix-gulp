@@ -2,44 +2,74 @@
 #
 #
 
-_ = require("lodash-mixins")
+_ = require("lodash")
 packageConfig = require("../../../package.json")
 appName = packageConfig.name
-appPort = 7007
+appPort = 7777
 
 config =
   appName: appName
-  appRoot: "./server"
+  appUser: "user who is running the production daemon"
   appPort: appPort
   appVersion: packageConfig.version
-  serverName: "prodServerName"
-  clientCode: "./server/public"
+  serverName: "prodServer"
+  clientCode: "/apps/#{appName}/server/public"
   dbRoot: "/apps/#{appName}/db"
-  #sharePath: "/apps/#{appName}/share"
   authConfig:
     readOnlyGroups: ["someGroup_r", "anotherGroup_r"]
     readWriteGroups: ["someOtherGroup_rw"]
-  mail:
-    server:
-      host: 'smtp.yourServerName.at'
-      port: 25
-    templatesPath: "/apps/#{appName}/share/templatesDir"
+  service:
+    contacts:
+      serverUrl: "http://localhost:7777/contacts"
+      imageFolder: "/apps/assets/images/contact"
+      imageUrl: "/assets/images/contact"
 
 
 module.exports = (env) ->
   if env is "development"
     development =
-      serverName: "userv"
+      serverName: "devi"
       dbRoot: "./db"
       liveReloadPort: appPort + 2000 # by my convention
       clientCode: "./client/dist"
-    _.extend(config, development)
+
+    _.merge(config, development)
 
   else if env is "testing"
     testing=
-      serverName: "userv"
+      serverName: "diolappdev01"
       dbRoot:     "./test/db"
-      appPort:    7008
-    _.extend(config, testing)
+      appPort:    appPort + 9
+    _.merge(config, testing)
 
+  #console.log config
   return config
+
+
+###
+# Include maybe???? - makes getters & setters nicer
+
+
+_ = require("lodash-mixins")
+# keep track of configuration
+_config = {} # private member
+config = {}  # exported config
+
+# can only be called once, when app starts up
+constructor = (clientConfig) ->
+  clientConfig.forEach (item) ->
+    _config[item.id] = item.data
+    Object.defineProperty(config, "#{item.id}",
+      {
+        get: -> return _config[item.id]
+        set: (val) ->
+          if val?.id and val?.data and _.isArray val.data
+            #console.log "setting", val
+            _config[val.id] = val.data
+          else console.log "cant set config, because of wrong args"
+      }
+    )
+
+module.exports = config
+
+###
