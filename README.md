@@ -67,6 +67,6 @@ git push origin
 ## Testing
 
 ``` sh
-gulp test
+npm test
 ```
-starts tape tests
+starts tap tests in /test

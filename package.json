@@ -27,7 +27,6 @@
     "feathers-socketio": "latest",
     "isomorphic-fetch": "latest",
     "joi": "latest",
-    "lodash": "^4.17.2",
     "lodash-mixins": "github:akralj/lodash-mixins",
     "moment": "latest",
     "nedb": "latest",
