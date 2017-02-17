@@ -1,8 +1,8 @@
 {
   "name": "appName",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": "akralj",
-  "license": "MIT",
+  "license": "GPL",
   "description": "Feathers/Webix Starter Kit",
   "repository": {
     "type": "git",
