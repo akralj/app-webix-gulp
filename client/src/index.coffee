@@ -4,7 +4,7 @@
 
 
 # global requires
-window._ = require("lodash")
+window._ = require("lodash-mixins")
 # use a root app to have an global event emitter handy
 window.app = require('ampersand-app')
 

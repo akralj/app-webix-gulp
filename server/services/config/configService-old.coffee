@@ -3,7 +3,7 @@
 #
 
 errors        = require('feathers-errors').types
-_             = require("lodash")
+_             = require("lodash-mixins")
 NeDb          = require('nedb')
 feathersService = require('feathers-nedb')
 hooks         = require('../../hooks')

@@ -10,7 +10,7 @@
   },
   "scripts": {
     "test-unit": "coffee test/index.coffee | tap-spec",
-    "test": "watch 'npm run test-unit' test server"
+    "test": "watch 'npm run test-unit' test server --wait 0"
   },
   "dependencies": {
     "ampersand-app": "latest",
@@ -46,9 +46,9 @@
     "run-sequence": "latest",
     "stylus": "latest",
     "supervisor": "latest",
-    "tap": "^10.1.1",
-    "tap-spec": "^4.1.1",
-    "watch": "^1.0.1",
+    "tap": "latest",
+    "tap-spec": "latest",
+    "watch": "latest",
     "watchify": "latest"
   }
 }

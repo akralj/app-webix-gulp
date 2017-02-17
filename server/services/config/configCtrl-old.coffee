@@ -2,7 +2,7 @@
 #
 #
 
-_ = require("lodash")
+_ = require("lodash-mixins")
 # keep track of configuration
 _config = {} # private member
 config = {}  # exported config

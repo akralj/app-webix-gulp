@@ -2,7 +2,7 @@
 #
 #
 
-_             = require("lodash")
+_             = require("lodash-mixins")
 NeDb          = require('nedb')
 service       = require('feathers-nedb')
 hooks         = require('../../hooks')

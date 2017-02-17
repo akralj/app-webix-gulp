@@ -2,7 +2,7 @@
 #
 #
 
-_ = require("lodash")
+_ = require("lodash-mixins")
 packageConfig = require("../../../package.json")
 appName = packageConfig.name
 appPort = 7007
