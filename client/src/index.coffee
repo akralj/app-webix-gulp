@@ -5,6 +5,7 @@
 
 # global requires
 window._ = require("lodash-mixins")
+#webix = require("webix")
 # use a root app to have an global event emitter handy
 window.app = require('ampersand-app')
 

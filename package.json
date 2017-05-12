@@ -15,7 +15,7 @@
   "dependencies": {
     "ampersand-app": "latest",
     "body-parser": "latest",
-    "coffee-script": "latest",
+    "coffeescript": "latest",
     "compression": "latest",
     "cors": "latest",
     "feathers": "latest",
@@ -32,6 +32,7 @@
     "nedb": "latest",
     "page": "latest",
     "socket.io-client": "latest",
+    "webix": "^4.3.0",
     "winston": "latest"
   },
   "devDependencies": {
