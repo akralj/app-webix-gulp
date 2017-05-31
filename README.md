@@ -8,12 +8,12 @@
 
 
 ## Installation
-- tested in ubuntu 14.04 and node 6.x (works in node 4.x too)
-- install node.js(6.x) and git, eg. on ubuntu
+- tested in ubuntu 14.04/16.04 and node 8.x (works in node ^7.6 to)
+- install node.js(8.x) and git, eg. on ubuntu
 
 ``` sh
-# add reps
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+# install dependencies on ubuntu
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo add-apt-repository ppa:git-core/ppa --yes
 sudo apt-get update
 # install all packages
