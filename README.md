@@ -1,5 +1,6 @@
-# used in projects till 2017-06-02
-## is needed to docs of old projects
+# app-webix-gulp (used to be: app)
+## used in projects till 2017-06-02
+### is needed for docs of old projects
 
 
 # Feathers/Webix Starter Kit -> app dev made easy
