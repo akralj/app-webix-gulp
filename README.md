@@ -1,3 +1,7 @@
+# used in projects till 2017-06-02
+## is needed to docs of old projects
+
+
 # Feathers/Webix Starter Kit -> app dev made easy
 
 ## Parts
@@ -8,12 +12,12 @@
 
 
 ## Installation
-- tested in ubuntu 14.04/16.04 and node 6 or 8
-- install node.js(8.x) and git, eg. on ubuntu
+- tested in ubuntu 14.04/16.04 and node 6.x
+- install node.js(6.x) and git, eg. on ubuntu
 
 ``` sh
 # install dependencies on ubuntu
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo add-apt-repository ppa:git-core/ppa --yes
 sudo apt-get update
 # install all packages
@@ -22,8 +26,8 @@ sudo apt-get install --yes git nodejs
 - clone repo and install npm dependencies:
 
 ``` sh
-git clone https://github.com/akralj/app
-cd app
+git clone https://github.com/akralj/app-webix-gulp
+cd app-webix-gulp
 # global modules
 npm install -g gulp coffeescript
 npm install
