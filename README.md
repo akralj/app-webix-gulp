@@ -8,7 +8,7 @@
 
 
 ## Installation
-- tested in ubuntu 14.04/16.04 and node 8.x (works in node ^7.6 to)
+- tested in ubuntu 14.04/16.04 and node 6 or 8
 - install node.js(8.x) and git, eg. on ubuntu
 
 ``` sh
@@ -25,13 +25,13 @@ sudo apt-get install --yes git nodejs
 git clone https://github.com/akralj/app
 cd app
 # global modules
-npm install -g gulp coffee-script
+npm install -g gulp coffeescript
 npm install
 # start app in dev mode
 gulp
 ```
 Point your browser to:
-[http://localhost:9007](http://localhost:9007) for example app
+[http://localhost:9777](http://localhost:9777) for example app
 [http://localhost:3001](http://localhost:3001) to configure browsersync
 
 Server is restarted, whenever server code changes.

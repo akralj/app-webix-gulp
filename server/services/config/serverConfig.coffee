@@ -44,32 +44,3 @@ module.exports = (env) ->
 
   #console.log config
   return config
-
-
-###
-# Include maybe???? - makes getters & setters nicer
-
-
-_ = require("lodash-mixins")
-# keep track of configuration
-_config = {} # private member
-config = {}  # exported config
-
-# can only be called once, when app starts up
-constructor = (clientConfig) ->
-  clientConfig.forEach (item) ->
-    _config[item.id] = item.data
-    Object.defineProperty(config, "#{item.id}",
-      {
-        get: -> return _config[item.id]
-        set: (val) ->
-          if val?.id and val?.data and _.isArray val.data
-            #console.log "setting", val
-            _config[val.id] = val.data
-          else console.log "cant set config, because of wrong args"
-      }
-    )
-
-module.exports = config
-
-###

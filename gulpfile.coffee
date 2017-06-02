@@ -70,12 +70,3 @@ gulp.task 'createProd', (callback) ->
 gulp.task "createProductionApp", (callback) -> runSequence 'copyAssets', 'packJsandCssToOneHtml', callback
 gulp.task('copyToProduction', shell.task("rsync -avhP --delete --stats server/ sanode@#{serverConfig.serverName}:/apps/#{serverConfig.appName}/server/"))
 gulp.task('copyModulesToProduction', shell.task("rsync -avhP --delete --stats package.json sanode@#{serverConfig.serverName}:/apps/#{serverConfig.appName}/"))
-
-
-# missing automation
-# 1. install node modules
-# npm i --production
-# 2. restart service
-#sudo restart APP_NAME
-# 3. check if service is still running
-#curl https://APP_DOMAIN_NAME/api/isOnline
